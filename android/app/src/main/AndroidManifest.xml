@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      allowBackup="false" turns off Android's automatic upload of app data to the
+      signed-in Google account. Sprout's whole claim to a parent is that no
+      third party holds their children's ledger, and Auto Backup would quietly
+      make that false — the WebView's localStorage, which is the entire family,
+      would sit in someone's Drive.
+
+      Device-to-device transfer is deliberately left alone. On Android 12 and up
+      that is a separate path from cloud backup and it stays on by default, so a
+      parent replacing their phone carries the family across directly, screen to
+      screen, with nothing in between. Given there is no server to restore from,
+      switching that off as well would mean a new phone starts empty.
+    -->
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|navigation|density"
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBarLaunch"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+    </application>
+
+    <!--
+      Permissions: none.
+
+      INTERNET is the one Capacitor puts here by default, and it is genuinely not
+      needed. The web app is served from inside the APK by the bridge's own
+      shouldInterceptRequest, which never touches a socket, and the four typefaces
+      are bundled rather than fetched. Leaving the permission in would advertise a
+      capability the app does not use; taking it out means the operating system
+      will not let a children's ledger leave this phone even if a future version
+      of this code tried.
+
+      If you ever add a plugin that really does need the network, add it back here
+      and say so on the Devices screen, because the promise that screen makes to a
+      parent is the whole reason there is no server.
+
+      One thing does show up in the merged manifest that is not written here:
+      app.sprout.family.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION, which androidx
+      injects so its own registerReceiver calls stay private above targetSdk 33.
+      It is the app's own signature-level permission over the app's own receivers
+      and grants no access to anything outside the process, so "no permissions"
+      still holds in the sense a parent means it. Confirm with:
+
+        aapt2 dump permissions app-release.apk
+    -->
+</manifest>

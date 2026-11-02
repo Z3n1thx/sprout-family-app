@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The five values the native shell needs, copied from src/styles/tokens.css.
+  Android cannot read CSS custom properties, so these are a hand-kept mirror of
+  the tokens rather than a second palette. If a token changes there, change it
+  here — the launcher icon and the first frame before the WebView paints are the
+  two places a mismatch would show.
+-->
+<resources>
+    <color name="paper">#FFFCF3</color>
+    <color name="ink">#2E2A22</color>
+    <color name="sun">#FFC61E</color>
+    <color name="sprout">#2FB86B</color>
+    <color name="sprout_tint">#E8F7EE</color>
+</resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Sprig, the app's mascot, as the launcher icon.
+
+  This is deliberately not a new drawing. The paths below are the same ones
+  src/ui/Sprig.tsx renders in the `neutral` mood, transcribed into a
+  VectorDrawable — so the face a child taps on the home screen is exactly the
+  face that greets them a second later. A separate "brand mark" would have been
+  the third thing to learn about a product aimed at four-year-olds.
+
+  Two mechanical notes for anyone editing this:
+
+  - Sprig's own coordinate space is 100x100. An adaptive icon is 108x108 with
+    only the middle 72x72 guaranteed to survive whatever mask the launcher
+    applies, so the whole drawing sits inside a <group> that scales it to 0.68
+    and centres it. Stroke widths scale with the group, which is why they are
+    still written at Sprig's native weights.
+  - VectorDrawable has no <circle>. The head and the eyes are circles drawn as
+    two arcs each; the numbers are cx-r, then r,r sweeps.
+-->
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <group
+        android:scaleX="0.68"
+        android:scaleY="0.68"
+        android:translateX="20"
+        android:translateY="19.9">
+
+        <!-- Stem -->
+        <path
+            android:pathData="M50,92 V70"
+            android:strokeColor="@color/ink"
+            android:strokeWidth="5.5"
+            android:strokeLineCap="round" />
+
+        <!-- Leaves -->
+        <path
+            android:pathData="M50,72 c-13,3 -21,-3 -22,-14 12,-3 20,2 22,14z"
+            android:fillColor="@color/sprout"
+            android:strokeColor="@color/ink"
+            android:strokeWidth="3.5"
+            android:strokeLineJoin="round" />
+        <path
+            android:pathData="M50,72 c13,3 21,-3 22,-14 -12,-3 -20,2 -22,14z"
+            android:fillColor="@color/sprout"
+            android:strokeColor="@color/ink"
+            android:strokeWidth="3.5"
+            android:strokeLineJoin="round" />
+
+        <!-- Head -->
+        <path
+            android:pathData="M23,42 a27,27 0 1,0 54,0 a27,27 0 1,0 -54,0 z"
+            android:fillColor="@color/sprout_tint"
+            android:strokeColor="@color/ink"
+            android:strokeWidth="4" />
+
+        <!-- Sprig's own two shoots -->
+        <path
+            android:pathData="M44,16 c-1,-6 -5,-9 -10,-9 0,6 4,10 10,9z M56,16 c1,-6 5,-9 10,-9 0,6 -4,10 -10,9z"
+            android:fillColor="@color/sprout"
+            android:strokeColor="@color/ink"
+            android:strokeWidth="3"
+            android:strokeLineJoin="round" />
+
+        <!-- Eyes and mouth -->
+        <path
+            android:pathData="M37.2,41 a3.8,3.8 0 1,0 7.6,0 a3.8,3.8 0 1,0 -7.6,0 z"
+            android:fillColor="@color/ink" />
+        <path
+            android:pathData="M55.2,41 a3.8,3.8 0 1,0 7.6,0 a3.8,3.8 0 1,0 -7.6,0 z"
+            android:fillColor="@color/ink" />
+        <path
+            android:pathData="M41,52 q9,7 18,0"
+            android:strokeColor="@color/ink"
+            android:strokeWidth="4"
+            android:strokeLineCap="round" />
+    </group>
+</vector>

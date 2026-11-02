@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Sun yellow, the coin colour. Green leaves on a green field would disappear,
+         and paper would disappear into a light wallpaper; the ink outline around
+         Sprig does the separating, which is the same rule the app's palette runs
+         on everywhere else. -->
+    <background android:drawable="@color/sun" />
+    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+    <monochrome android:drawable="@drawable/ic_launcher_monochrome" />
+</adaptive-icon>

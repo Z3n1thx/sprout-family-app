@@ -1,0 +1,180 @@
+/* Reset, the presentation stage, and the phone frame. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--stage);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Focus is never removed, only restyled. Switch and keyboard access to the
+   picture-key login depends on this being visible on a coloured fill. */
+:focus-visible {
+  outline: 3px solid var(--sky-deep);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+[data-tier='1'] :focus-visible,
+[data-tier='2'] :focus-visible {
+  outline-width: 4px;
+}
+
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Stage ---------------------------------------------------------------
+   On a wide screen the app sits in a phone frame, because it is a phone app
+   and pretending otherwise would let desktop-only layouts creep in. Below
+   760px the frame dissolves and the app fills the viewport for real.
+   --------------------------------------------------------------------- */
+
+.stage {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 16px 40px;
+}
+
+.frame {
+  width: 390px;
+  height: 780px;
+  max-height: calc(100vh - 130px);
+  border-radius: 40px;
+  border: 8px solid #100e0b;
+  box-shadow:
+    0 0 0 2px #3e382e,
+    0 26px 60px rgba(0, 0, 0, 0.55);
+  background: var(--paper);
+  overflow: hidden;
+  position: relative;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.frame::after {
+  /* Notch. Purely so the comps read as a phone at a glance. */
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 108px;
+  height: 22px;
+  border-radius: 12px;
+  background: #100e0b;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.frame > .app {
+  padding-top: 26px;
+}
+
+@media (max-width: 760px) {
+  .stage {
+    padding: 0;
+    gap: 0;
+  }
+  .frame {
+    width: 100%;
+    height: 100dvh;
+    max-height: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .frame::after {
+    display: none;
+  }
+  .frame > .app {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* --- App shell ---------------------------------------------------------- */
+
+.app {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  font-size: var(--fs-body);
+  position: relative;
+}
+
+/* The scrolling region. Everything above and below it is pinned. */
+.screen {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--pad);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.screen.center {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.screen.flush {
+  padding: 0;
+}
+
+.spacer {
+  flex: 1;
+  min-height: var(--gap);
+}
+

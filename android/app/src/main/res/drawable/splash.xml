@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The window background for MainActivity, which is what fills the screen in the
+  fraction of a second between the activity opening and the WebView's first
+  paint. Capacitor ships bitmaps here; this is paper and Sprig instead, so the
+  gap reads as the app starting rather than as a white flash.
+
+  It stays the window background for the activity's whole life, which is why the
+  colour has to be @color/paper and not something decorative — anywhere the web
+  layer is briefly transparent, this is what shows through.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/paper" />
+    <item
+        android:drawable="@drawable/ic_launcher_foreground"
+        android:gravity="center"
+        android:width="240dp"
+        android:height="240dp" />
+</layer-list>

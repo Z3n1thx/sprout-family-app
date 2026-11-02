@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The themed-icon layer (Android 13+). The launcher recolours whatever is here to
+  match the wallpaper, so this is Sprig as a flat silhouette: same body, no face,
+  because two ink dots and a smile would be tinted the same colour as the head
+  and vanish. Same 0.68 group transform as the foreground, so a themed icon and a
+  full-colour one sit at the same size on the same home screen.
+-->
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <group
+        android:scaleX="0.68"
+        android:scaleY="0.68"
+        android:translateX="20"
+        android:translateY="19.9">
+
+        <path
+            android:pathData="M50,92 V70"
+            android:strokeColor="#000000"
+            android:strokeWidth="6"
+            android:strokeLineCap="round" />
+        <path
+            android:pathData="M50,72 c-13,3 -21,-3 -22,-14 12,-3 20,2 22,14z"
+            android:fillColor="#000000" />
+        <path
+            android:pathData="M50,72 c13,3 21,-3 22,-14 -12,-3 -20,2 -22,14z"
+            android:fillColor="#000000" />
+        <path
+            android:pathData="M23,42 a27,27 0 1,0 54,0 a27,27 0 1,0 -54,0 z"
+            android:fillColor="#000000" />
+        <path
+            android:pathData="M44,16 c-1,-6 -5,-9 -10,-9 0,6 4,10 10,9z M56,16 c1,-6 5,-9 10,-9 0,6 -4,10 -10,9z"
+            android:fillColor="#000000" />
+    </group>
+</vector>

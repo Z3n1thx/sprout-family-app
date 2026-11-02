@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+android/app/build/
+
+# Environment and credentials
+.env
+.env.local
+keystore.properties
+*.jks
+
+# Toolchain (portable, regeneratable from scripts)
+.tools/
+
+# Gradle (outside project tree, but document it)
+# C:/private/sprout-gradle-home
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Release APKs (built artifacts)
+*.apk
+
+# Capacitor generated
+android/capacitor-cordova-android-plugins/
+android/.gradle/
+android/build/
+android/app/release/
+android/app/debug/

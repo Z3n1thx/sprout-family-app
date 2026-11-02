@@ -1,0 +1,1455 @@
+/* Components. Every one reads the tier custom properties rather than hard
+   numbers, so a screen changes age by changing one attribute on its ancestor. */
+
+/* --- Buttons -------------------------------------------------------------
+   Dark ink on a saturated fill, 2.5px ink border, 4px hard bottom shadow.
+   The border and shadow do double duty: they read as chunky and pressable to
+   a four-year-old, and they guarantee the control's edge stays visible over
+   any fill behind it.
+   --------------------------------------------------------------------- */
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  min-height: var(--tap);
+  padding: 10px 16px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: calc(var(--fs-body) * 1.02);
+  line-height: 1.15;
+  text-align: center;
+  color: var(--ink);
+  background: var(--cloud-soft);
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 0 var(--drop) 0 var(--ink);
+  transition:
+    transform 90ms ease,
+    box-shadow 90ms ease;
+  text-decoration: none;
+  flex: none;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(var(--drop));
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  box-shadow: 0 var(--drop) 0 var(--ink-soft);
+  border-color: var(--ink-soft);
+}
+
+.btn.green {
+  background: var(--sprout);
+}
+.btn.sun {
+  background: var(--sun);
+}
+.btn.sky {
+  background: var(--sky);
+}
+.btn.berry {
+  background: var(--berry);
+}
+.btn.grape {
+  background: var(--grape);
+}
+.btn.slate {
+  background: var(--slate-tint);
+}
+.btn.paper {
+  background: var(--paper);
+}
+
+/* Secondary. Still a real target, just not the thing being pointed at. */
+.btn.ghost {
+  background: transparent;
+  border-width: 2px;
+  box-shadow: none;
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+
+.btn.ghost:active:not(:disabled) {
+  transform: none;
+  background: var(--cloud-soft);
+}
+
+/* Tertiary. Appeal links, "not now", back-outs. Never competes. */
+.btn.quiet {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-meta);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  min-height: var(--tap);
+}
+
+.btn.huge {
+  min-height: calc(var(--tap) * 1.15);
+  font-size: calc(var(--fs-h) * 1.08);
+  border-radius: var(--radius-lg);
+}
+
+.btn.sm {
+  min-height: max(44px, calc(var(--tap) * 0.78));
+  font-size: var(--fs-meta);
+  border-radius: var(--radius-sm);
+}
+
+.btn.auto {
+  width: auto;
+}
+
+.btn svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+.btnrow {
+  display: flex;
+  gap: var(--gap);
+  flex: none;
+}
+
+.btnrow > .btn {
+  flex: 1;
+}
+
+/* --- Cards -------------------------------------------------------------- */
+
+.card {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: var(--pad);
+  box-shadow: 0 3px 0 var(--cloud);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: none;
+}
+
+.card.flat {
+  box-shadow: none;
+}
+
+.card.soft {
+  border-color: var(--cloud);
+  box-shadow: none;
+  background: var(--cloud-soft);
+}
+
+.card.t-sprout {
+  background: var(--sprout-tint);
+  border-color: var(--sprout);
+}
+.card.t-sun {
+  background: var(--sun-tint);
+  border-color: var(--sun);
+}
+.card.t-sky {
+  background: var(--sky-tint);
+  border-color: var(--sky);
+}
+.card.t-berry {
+  background: var(--berry-tint);
+  border-color: var(--berry);
+}
+.card.t-grape {
+  background: var(--grape-tint);
+  border-color: var(--grape);
+}
+.card.t-slate {
+  background: var(--slate-tint);
+  border-color: var(--slate);
+}
+
+.card > h2,
+.card > h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h);
+  font-weight: 700;
+}
+
+.card p {
+  margin: 0;
+}
+
+/* --- Text --------------------------------------------------------------- */
+
+.h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: calc(var(--fs-h) * 1.22);
+  font-weight: 800;
+  line-height: 1.12;
+}
+
+.h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.body {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.42;
+}
+
+.meta {
+  margin: 0;
+  font-size: var(--fs-meta);
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+/* Section label. Uppercase is capped at one short phrase — caps strip the
+   word-shape cue beginning readers lean on. */
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: max(11px, calc(var(--fs-meta) * 0.78));
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Top bar ------------------------------------------------------------ */
+
+.tbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px var(--pad);
+  border-bottom: 2px solid var(--cloud);
+  background: var(--paper);
+  min-height: 56px;
+}
+
+.tbar .h2 {
+  flex: 1;
+  min-width: 0;
+}
+
+.tbar .back {
+  min-height: var(--tap);
+  min-width: max(44px, calc(var(--tap) * 0.7));
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+  margin-left: -6px;
+}
+
+/* The grown-up door. Top-right, outside the one-handed thumb arc, ghost
+   styling, no colour. Every other cue in the child app pulls bottom-centre. */
+.grownup {
+  min-height: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-family: var(--font-body);
+  font-size: max(12px, calc(var(--fs-meta) * 0.8));
+  font-weight: 600;
+  color: var(--ink-soft);
+  border: 1.5px solid var(--cloud);
+  border-radius: 10px;
+  padding: 0 8px;
+  background: transparent;
+}
+
+/* Read-aloud. On every child screen; on by default at 4-6. */
+.ear {
+  min-height: 40px;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--cloud);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--sky-deep);
+}
+
+.ear svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ear[aria-pressed='true'] {
+  background: var(--sky-tint);
+  border-color: var(--sky);
+}
+
+/* --- Bottom nav --------------------------------------------------------- */
+
+.bnav {
+  flex: none;
+  display: flex;
+  border-top: 2px solid var(--cloud);
+  background: var(--paper);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.bnav a {
+  flex: 1;
+  min-height: var(--tap);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 2px;
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: max(11px, calc(var(--fs-meta) * 0.82));
+  position: relative;
+}
+
+.bnav a svg {
+  width: calc(var(--fs-h) * 1.05);
+  height: calc(var(--fs-h) * 1.05);
+}
+
+.bnav a.on {
+  color: var(--ink);
+}
+
+.bnav a.on::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 22%;
+  right: 22%;
+  height: 4px;
+  border-radius: 0 0 4px 4px;
+  background: var(--sprout);
+}
+
+/* An icon-only control assumes a shared visual vocabulary a five-year-old has
+   not built. So the label is never optional — only smaller. */
+.bnav .dot {
+  position: absolute;
+  top: 6px;
+  right: 50%;
+  transform: translateX(20px);
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--berry);
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+}
+
+/* --- The coin jar ------------------------------------------------------- */
+
+.jar {
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, #fffdf6, var(--sun-tint));
+  padding: var(--pad);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 var(--drop) 0 var(--cloud);
+  flex: none;
+}
+
+.jarlabel {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-meta);
+  color: var(--sun-deep);
+  letter-spacing: 0.02em;
+}
+
+.bal {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-bal);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.bal svg {
+  width: calc(var(--fs-bal) * 0.62);
+  height: calc(var(--fs-bal) * 0.62);
+  color: var(--sun);
+}
+
+/* Individually drawn coins. At 4-6 the numeral labels something already
+   visible; quantity is still physical at that age, so the coins are the
+   balance and the number is the caption. */
+.coinrow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3px;
+  max-width: 100%;
+}
+
+.coinrow svg {
+  width: 26px;
+  height: 26px;
+  color: var(--sun);
+}
+
+.coinrow svg.dim {
+  opacity: 0.26;
+}
+
+.coinrow svg.new {
+  filter: drop-shadow(0 0 5px var(--sun));
+  animation: coinland var(--celebrate) ease-out both;
+}
+
+@keyframes coinland {
+  from {
+    transform: translateY(-14px) scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Real-money reference, tier 3 only. The ~ carries its weight: this is what
+   coins are *like*, not what they are. */
+.approx {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+}
+
+/* --- Spend / Save / Share ----------------------------------------------- */
+
+.split {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.split > button,
+.split > div {
+  flex: 1;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-sm);
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: var(--paper);
+  min-height: 62px;
+}
+
+.split .k {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: max(12px, calc(var(--fs-meta) * 0.86));
+  color: var(--ink-soft);
+}
+
+.split .v {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: calc(var(--fs-h) * 1.05);
+  font-variant-numeric: tabular-nums;
+}
+
+.split .b-spend {
+  border-color: var(--berry);
+  background: var(--berry-tint);
+}
+.split .b-save {
+  border-color: var(--sky);
+  background: var(--sky-tint);
+}
+.split .b-share {
+  border-color: var(--grape);
+  background: var(--grape-tint);
+}
+
+/* --- Goal plant --------------------------------------------------------- */
+
+.goal {
+  display: flex;
+  gap: var(--gap);
+  align-items: center;
+}
+
+.plant {
+  width: 74px;
+  height: 84px;
+  flex: none;
+  color: var(--sprout);
+}
+
+.goalbody {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bar {
+  height: 16px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--cloud-soft);
+  overflow: hidden;
+}
+
+.bar > i {
+  display: block;
+  height: 100%;
+  background: var(--sprout);
+  border-right: 2px solid var(--ink);
+  transition: width 400ms ease;
+}
+
+.bar.escrow > i {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--sprout) 0 7px,
+    #27a45e 7px 14px
+  );
+}
+
+/* --- Story (transaction history) ---------------------------------------- */
+
+.story {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.storyday {
+  margin: 6px 0 2px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+}
+
+/* Illustrated sentences, one per line. Nothing here is called a transaction,
+   a debit, or a balance adjustment. */
+.srow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid var(--cloud);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  background: var(--paper);
+}
+
+.srow .art {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background: var(--cloud-soft);
+}
+
+.srow .txt {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--fs-body);
+  line-height: 1.32;
+}
+
+.srow .amt {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: calc(var(--fs-body) * 1.05);
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.srow .amt.in {
+  color: var(--sprout-deep);
+}
+.srow .amt.out {
+  color: var(--berry-deep);
+}
+.srow .amt svg {
+  width: 0.9em;
+  height: 0.9em;
+  color: var(--sun);
+}
+
+/* Running sum. Appears from tier 2, where addition within 100 is fluent and
+   history can double as arithmetic practice. */
+.sum {
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+/* --- Chips -------------------------------------------------------------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  min-height: max(40px, calc(var(--tap) * 0.72));
+  padding: 8px 13px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-meta);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--sun);
+}
+
+.chip.soft {
+  border-color: var(--cloud);
+  font-weight: 600;
+}
+
+.chip.soft[aria-pressed='true'] {
+  border-color: var(--ink);
+  background: var(--sun);
+}
+
+/* --- Tiles (rewards, categories, jobs) ---------------------------------- */
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+}
+
+.tile {
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: 0 var(--drop) 0 var(--cloud);
+  padding: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+  text-align: center;
+  min-height: calc(var(--tap) * 1.6);
+  text-decoration: none;
+  color: var(--ink);
+  transition:
+    transform 90ms ease,
+    box-shadow 90ms ease;
+}
+
+.tile:active {
+  transform: translateY(var(--drop));
+  box-shadow: 0 0 0 var(--cloud);
+}
+
+.tile .art {
+  height: 56px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  background: var(--cloud-soft);
+}
+
+.tile .name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-body);
+  line-height: 1.15;
+}
+
+.tile .price {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-meta);
+}
+
+.tile .price svg {
+  width: 1em;
+  height: 1em;
+  color: var(--sun);
+}
+
+/* Reachable now. The shelf is filtered so everything visible is reachable
+   within the child's horizon — a reward a five-year-old cannot reach in a
+   week is not a goal, it is a taunt. */
+.tile.ready {
+  border-color: var(--sprout);
+  background: var(--sprout-tint);
+}
+
+.tile.away {
+  opacity: 0.94;
+}
+
+.tile .away-note {
+  margin: 0;
+  font-size: max(11px, calc(var(--fs-meta) * 0.82));
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+}
+
+/* --- Badges ------------------------------------------------------------- */
+
+.bgrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+}
+
+.bdg {
+  border: 2px solid var(--grape);
+  background: var(--grape-tint);
+  border-radius: var(--radius-sm);
+  padding: 10px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.bdg .g {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.bdg .n {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: max(11px, calc(var(--fs-meta) * 0.84));
+  line-height: 1.15;
+}
+
+.bdg.locked {
+  border-color: var(--cloud);
+  background: var(--cloud-soft);
+  border-style: dashed;
+}
+
+.bdg.locked .g {
+  filter: grayscale(1);
+  opacity: 0.42;
+}
+
+/* --- Job / queue rows --------------------------------------------------- */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row2 {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--paper);
+  padding: 11px 12px;
+  min-height: var(--tap);
+  text-align: left;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.row2 .art {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 11px;
+  background: var(--cloud-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.row2 .mid {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.row2 .t {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-body);
+  line-height: 1.18;
+}
+
+.row2 .s {
+  margin: 0;
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+  line-height: 1.3;
+}
+
+.row2 .end {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.row2.t-slate {
+  border-color: var(--slate);
+  background: var(--slate-tint);
+}
+.row2.t-sun {
+  border-color: var(--sun);
+  background: var(--sun-tint);
+}
+.row2.t-sprout {
+  border-color: var(--sprout);
+  background: var(--sprout-tint);
+}
+.row2.t-berry {
+  border-color: var(--berry);
+  background: var(--berry-tint);
+}
+.row2.soft {
+  border-color: var(--cloud);
+}
+
+/* --- Status pills ------------------------------------------------------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: max(11px, calc(var(--fs-meta) * 0.84));
+  white-space: nowrap;
+}
+
+.pill.wait {
+  background: var(--sun-tint);
+  border-color: var(--sun-deep);
+  color: var(--sun-deep);
+}
+.pill.done {
+  background: var(--sprout-tint);
+  border-color: var(--sprout-deep);
+  color: var(--sprout-deep);
+}
+.pill.notyet {
+  background: var(--slate-tint);
+  border-color: var(--slate);
+  color: var(--slate);
+}
+.pill.open {
+  background: var(--paper);
+  border-color: var(--ink-soft);
+  color: var(--ink-soft);
+}
+.pill.count {
+  background: var(--berry);
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.pill svg {
+  width: 1em;
+  height: 1em;
+}
+
+/* --- Form fields -------------------------------------------------------- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field > label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-meta);
+}
+
+.field > .hint {
+  font-size: max(12px, calc(var(--fs-meta) * 0.88));
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.field input,
+.field textarea,
+.field select {
+  min-height: var(--tap);
+  padding: 10px 13px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  font-size: var(--fs-body);
+  font-family: var(--font-body);
+  width: 100%;
+}
+
+.field textarea {
+  min-height: 84px;
+  resize: vertical;
+  line-height: 1.4;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #9a927f;
+}
+
+/* --- Stepper ------------------------------------------------------------ */
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stepper button {
+  width: var(--tap);
+  height: var(--tap);
+  flex: none;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius-sm);
+  background: var(--sun-tint);
+  box-shadow: 0 3px 0 var(--ink);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: calc(var(--fs-h) * 1.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepper button:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.stepper button:disabled {
+  opacity: 0.4;
+}
+
+.stepper .val {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: calc(var(--fs-h) * 1.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.stepper .val svg {
+  width: 1em;
+  height: 1em;
+  color: var(--sun);
+}
+
+/* --- Switch rows -------------------------------------------------------- */
+
+.swrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--tap);
+  padding: 8px 0;
+  border-bottom: 1.5px solid var(--cloud);
+  width: 100%;
+  text-align: left;
+}
+
+.swrow:last-child {
+  border-bottom: 0;
+}
+
+.swrow .mid {
+  flex: 1;
+  min-width: 0;
+}
+
+.swrow .mid p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-body);
+}
+
+.swrow .mid small {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  line-height: 1.35;
+}
+
+.sw {
+  flex: none;
+  width: 52px;
+  height: 30px;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  background: var(--cloud);
+  position: relative;
+  transition: background 140ms ease;
+}
+
+.sw::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  transition: transform 140ms ease;
+}
+
+.sw[aria-checked='true'] {
+  background: var(--sprout);
+}
+
+.sw[aria-checked='true']::after {
+  transform: translateX(22px);
+}
+
+/* --- Picture-key login -------------------------------------------------- */
+
+.keygrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  width: 100%;
+}
+
+.pincell {
+  aspect-ratio: 1;
+  min-height: 84px;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: 0 var(--drop) 0 var(--cloud);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+}
+
+.pincell:active {
+  transform: translateY(var(--drop));
+  box-shadow: none;
+}
+
+.pincell[aria-pressed='true'] {
+  background: var(--sun-tint);
+  border-color: var(--sun-deep);
+}
+
+.keydots {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.keydots i {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2.5px solid var(--ink);
+  background: var(--paper);
+}
+
+.keydots i.on {
+  background: var(--sun);
+}
+
+/* --- Avatars ------------------------------------------------------------ */
+
+.avatars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  justify-content: center;
+}
+
+.who {
+  width: 132px;
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  box-shadow: 0 var(--drop) 0 var(--cloud);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.who:active {
+  transform: translateY(var(--drop));
+  box-shadow: none;
+}
+
+.who .face {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 2.5px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  background: var(--sun-tint);
+}
+
+.who .nm {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-h);
+}
+
+/* --- Sprig -------------------------------------------------------------- */
+
+.sprig {
+  width: 76px;
+  height: 76px;
+  color: var(--sprout);
+  flex: none;
+}
+
+.sprig.lg {
+  width: 116px;
+  height: 116px;
+}
+
+.sprig.sm {
+  width: 46px;
+  height: 46px;
+}
+
+/* --- Speech bubble ------------------------------------------------------
+   A declined child reads the parent's reason in the parent's own words. */
+.bubble {
+  position: relative;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--paper);
+  padding: 12px 14px;
+  font-size: var(--fs-body);
+  line-height: 1.38;
+  margin-top: 10px;
+}
+
+.bubble::before,
+.bubble::after {
+  content: '';
+  position: absolute;
+  left: 26px;
+  width: 0;
+  height: 0;
+  border: 9px solid transparent;
+}
+
+.bubble::before {
+  top: -20px;
+  border-bottom-color: var(--ink);
+}
+
+.bubble::after {
+  top: -16px;
+  border-bottom-color: var(--paper);
+}
+
+.bubble .who {
+  all: unset;
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-meta);
+  color: var(--ink-soft);
+  margin-bottom: 3px;
+}
+
+/* --- Celebration -------------------------------------------------------- */
+
+.confetti {
+  font-size: 22px;
+  letter-spacing: 7px;
+  animation: pop var(--celebrate) ease-out both;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.12);
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.grow-in {
+  animation: growin var(--celebrate) cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+@keyframes growin {
+  from {
+    transform: scale(0.72);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* --- Insight bars ------------------------------------------------------- */
+
+.hbars {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.hbar {
+  display: grid;
+  grid-template-columns: 84px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-meta);
+}
+
+.hbar .track {
+  height: 14px;
+  border-radius: 7px;
+  background: var(--cloud-soft);
+  border: 1.5px solid var(--cloud);
+  overflow: hidden;
+}
+
+.hbar .track > i {
+  display: block;
+  height: 100%;
+  background: var(--berry);
+}
+
+.hbar .v {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Table (parent only) ------------------------------------------------ */
+
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-meta);
+}
+
+.tbl th,
+.tbl td {
+  text-align: left;
+  padding: 7px 6px;
+  border-bottom: 1.5px solid var(--cloud);
+  vertical-align: top;
+}
+
+.tbl th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+/* --- Segmented control (parent) ----------------------------------------- */
+
+.seg {
+  display: flex;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex: none;
+}
+
+.seg button {
+  flex: 1;
+  min-height: var(--tap);
+  padding: 8px 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-meta);
+  background: var(--paper);
+  border-right: 2px solid var(--ink);
+}
+
+.seg button:last-child {
+  border-right: 0;
+}
+
+.seg button[aria-pressed='true'] {
+  background: var(--sun);
+}
+
+/* --- Sheet / toast ------------------------------------------------------ */
+
+.sheet {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background: rgba(46, 42, 34, 0.5);
+  display: flex;
+  align-items: flex-end;
+  padding: 14px;
+}
+
+.sheet > div {
+  width: 100%;
+  background: var(--paper);
+  border: var(--line) solid var(--ink);
+  border-radius: var(--radius-lg);
+  padding: var(--pad);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.toast {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 60;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  animation: slideup 220ms ease-out both;
+}
+
+@keyframes slideup {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
+
+/* --- Empty states ------------------------------------------------------
+   An empty screen is an invitation to act, not a shrug. */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding: 22px 8px;
+  color: var(--ink-soft);
+}
+
+.empty .g {
+  font-size: 40px;
+}

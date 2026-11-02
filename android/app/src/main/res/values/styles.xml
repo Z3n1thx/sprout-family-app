@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <!--
+      MainActivity's theme, and therefore the only one that matters.
+
+      forceDarkAllowed is off because Sprout has exactly one palette. The ink
+      rule in src/styles/tokens.css is a measured contrast decision - ink on
+      five bright fills, 4.6:1 to 9.1:1 - and an automatic inversion would throw
+      those measurements away on any phone whose owner keeps dark mode on. The
+      WebView itself is already safe (algorithmic darkening is opt-in above
+      targetSdk 33), so this covers the native window behind it.
+    -->
+    <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+        <item name="android:background">@drawable/splash</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+        <!-- Android 12 and up draw their own splash before ours; this stops it
+             being the system default grey behind Sprig. -->
+        <item name="android:windowSplashScreenBackground" tools:targetApi="31">@color/paper</item>
+    </style>
+</resources>
