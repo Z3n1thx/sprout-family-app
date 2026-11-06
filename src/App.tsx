@@ -3,6 +3,8 @@ import { IconSprite } from './ui/Icons';
 import Welcome from './screens/Welcome';
 import Setup from './screens/Setup';
 import Join from './screens/Join';
+import EnhancedOnboarding from './screens/EnhancedOnboarding';
+import CloudSetup from './screens/CloudSetup';
 import ChildPicker from './child/ChildPicker';
 import PictureKey from './child/PictureKey';
 import ChildFrame, { ChildTabs } from './child/ChildFrame';
@@ -37,6 +39,8 @@ export default function App() {
         <div className="frame">
           <Routes>
             <Route path="/" element={<Welcome />} />
+            <Route path="/onboarding" element={<EnhancedOnboarding onComplete={() => {}} />} />
+            <Route path="/setup-cloud" element={<CloudSetup />} />
             <Route path="/setup" element={<Setup />} />
             <Route path="/join" element={<Join />} />
 
